@@ -1,17 +1,15 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const dotenv = require('dotenv')
 const UserModel = require('./User')
 
 const app = express()
 app.use(cors())
 app.use(express.json())
 
-
-mongoose.connect('mongodb://127.0.0.1/nodeexpressdb', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+dotenv.config()
+mongoose.connect(process.env.URL)
     .then(db => console.log('DB is connected'))
     .catch(err => console.log(err));
 

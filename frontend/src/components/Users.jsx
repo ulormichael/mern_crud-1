@@ -1,9 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from 'react'
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Users() {
-    const { id } = useParams()
 
     const [data, setData] = useState([])
     const navigate = useNavigate()
@@ -22,6 +21,7 @@ function Users() {
             .then(res => {
                 console.log(res)
                 navigate('/')
+                setData(data.filter((user) => user._id !== id))
             }).catch(err => console.log(err))
     }
 
